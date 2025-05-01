@@ -10,7 +10,7 @@ const uploadImage = async (imageData, token) => {
       },
     }
 
-    const response = await axios.post("/api/upload", imageData, config)
+    const response = await axios.post("https://cricket-team-backend.vercel.app/api/upload", imageData, config)
     return response.data
   } catch (error) {
     console.error("Upload error:", error.response?.data || error.message)
@@ -27,7 +27,7 @@ const deleteImage = async (publicId, token) => {
       },
     }
 
-    const response = await axios.delete(`/api/upload/${publicId}`, config)
+    const response = await axios.delete(`https://cricket-team-backend.vercel.app/api/upload/${publicId}`, config)
     return response.data
   } catch (error) {
     console.error("Delete error:", error.response?.data || error.message)
