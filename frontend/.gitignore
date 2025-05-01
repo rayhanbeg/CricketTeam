@@ -2,9 +2,5 @@
 **/node_modules/
 
 # Ignore environment files
-**/.env
-
-# Ignore log files
-*.log
-npm-debug.log*
+# **/.env
 
