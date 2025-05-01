@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = "/api/matches/"
+const API_URL = "https://cricket-team-backend.vercel.app/api/matches/"
 
 // Get all matches
 const getMatches = async () => {

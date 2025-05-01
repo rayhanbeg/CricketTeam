@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = "/api/auth/"
+const API_URL = "https://cricket-team-backend.vercel.app/api/auth/"
 
 // Helper function to save user data in localStorage
 const saveUserToLocalStorage = (data) => {
