@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142.1 76.2% 36.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 142.4 71.8% 29.2%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Form styling for both light and dark mode */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  @apply dark:bg-gray-800 dark:text-white dark:border-gray-700;
+}
+
+/* Fix for input focus in dark mode */
+input:focus,
+select:focus,
+textarea:focus {
+  @apply dark:ring-green-500 dark:border-green-500;
+}
+
+/* General form styling fixes */
+.form-input,
+.form-select {
+  @apply dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700;
+}
+
+/* Table styling fixes for dark mode */
+table {
+  @apply dark:text-gray-100;
+}
+
+/* Additional hover state fixes for dark mode */
+.hover\:bg-gray-50:hover {
+  @apply dark:hover:bg-gray-800;
+}
+
+/* Adjust color scheme for active elements in dark mode */
+.active\:bg-gray-100:active {
+  @apply dark:active:bg-gray-800;
+}
+
+/* Ensure modal backgrounds work correctly in dark mode */
+.modal-content {
+  @apply dark:bg-gray-800 dark:text-gray-100;
+}
+
+/* Fix for field inputs in dark mode */
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[multiple],
+textarea,
+select {
+  @apply dark:bg-gray-800 dark:text-white dark:border-gray-700;
+}
+
+/* Fix for modal backgrounds */
+.modal-backdrop {
+  @apply bg-black bg-opacity-50 dark:bg-opacity-70;
+}
+
+/* Fix for dropdown menus */
+.dropdown-menu {
+  @apply dark:bg-gray-800 dark:text-white dark:border-gray-700;
+}
+
+/* Fix for buttons */
+button {
+  @apply dark:text-white;
+}
+
+/* Fix for card backgrounds */
+.card {
+  @apply dark:bg-gray-800 dark:text-white dark:border-gray-700;
+}
+
+/* Fix for admin dashboard */
+.admin-dashboard {
+  @apply dark:bg-gray-900 dark:text-white;
+}
