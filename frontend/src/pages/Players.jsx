@@ -1,4 +1,4 @@
-"use client"
+
 
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
@@ -19,7 +19,7 @@ const Players = () => {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-900">
+    <div className="bg-white dark:bg-[#020817]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">

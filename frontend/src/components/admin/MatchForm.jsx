@@ -8,8 +8,9 @@ import { toast } from "react-toastify"
 import { FaSpinner } from "react-icons/fa"
 
 const MatchForm = ({ match = null, onSuccess = () => {} }) => {
+  // State for form data
   const [formData, setFormData] = useState({
-    date: new Date().toISOString().split("T")[0],
+    date: new Date().toISOString().split("T")[0], // Default to today's date
     opponent: "",
     format: "T20",
     result: "Won",
@@ -18,25 +19,30 @@ const MatchForm = ({ match = null, onSuccess = () => {} }) => {
     playerPerformances: [],
   })
 
+  // State for form validation and UI
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedPlayers, setSelectedPlayers] = useState([])
 
+  // Redux hooks
   const dispatch = useDispatch()
   const { isLoading, isSuccess, isError, message } = useSelector((state) => state.matches)
   const { players } = useSelector((state) => state.players)
   const { user } = useSelector((state) => state.auth)
 
-  // Load players
+  // Load players when component mounts
   useEffect(() => {
+    // Get all players from API
     dispatch(getPlayers())
   }, [dispatch])
 
   // If editing, populate form with match data
   useEffect(() => {
     if (match) {
+      // Format date for input field
       const matchDate = match.date ? new Date(match.date).toISOString().split("T")[0] : ""
 
+      // Set form data with match data
       setFormData({
         date: matchDate,
         opponent: match.opponent || "",
@@ -47,6 +53,7 @@ const MatchForm = ({ match = null, onSuccess = () => {} }) => {
         playerPerformances: match.playerPerformances || [],
       })
 
+      // Set selected players if match has player performances
       if (match.playerPerformances && match.playerPerformances.length > 0) {
         const playerIds = match.playerPerformances.map((perf) => {
           // Handle both populated and unpopulated player references
@@ -60,6 +67,7 @@ const MatchForm = ({ match = null, onSuccess = () => {} }) => {
   // Handle success and error states
   useEffect(() => {
     if (isSuccess && isSubmitting) {
+      // Show success message
       toast.success(match ? "Match updated successfully" : "Match added successfully")
       setIsSubmitting(false)
       dispatch(reset())
@@ -67,6 +75,7 @@ const MatchForm = ({ match = null, onSuccess = () => {} }) => {
     }
 
     if (isError && isSubmitting) {
+      // Show error message
       toast.error(message || "Something went wrong")
       setIsSubmitting(false)
       dispatch(reset())
@@ -80,8 +89,11 @@ const MatchForm = ({ match = null, onSuccess = () => {} }) => {
     }
   }, [isSuccess, isError, message, isSubmitting, match, onSuccess, dispatch])
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target
+
+    // Update form data
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -96,11 +108,15 @@ const MatchForm = ({ match = null, onSuccess = () => {} }) => {
     }
   }
 
+  // Handle player selection
   const handlePlayerSelect = (e) => {
     const playerId = e.target.value
+
+    // Add player to selected players if not already selected
     if (playerId && !selectedPlayers.includes(playerId)) {
       setSelectedPlayers([...selectedPlayers, playerId])
 
+      // Add player to player performances
       setFormData((prev) => ({
         ...prev,
         playerPerformances: [
@@ -117,8 +133,12 @@ const MatchForm = ({ match = null, onSuccess = () => {} }) => {
     }
   }
 
+  // Handle player removal
   const handlePlayerRemove = (playerId) => {
+    // Remove player from selected players
     setSelectedPlayers(selectedPlayers.filter((id) => id !== playerId))
+
+    // Remove player from player performances
     setFormData((prev) => ({
       ...prev,
       playerPerformances: prev.playerPerformances.filter((perf) => {
@@ -129,7 +149,9 @@ const MatchForm = ({ match = null, onSuccess = () => {} }) => {
     }))
   }
 
+  // Handle player performance changes
   const handlePerformanceChange = (playerId, field, value) => {
+    // Update player performance
     setFormData((prev) => ({
       ...prev,
       playerPerformances: prev.playerPerformances.map((perf) => {
@@ -140,26 +162,32 @@ const MatchForm = ({ match = null, onSuccess = () => {} }) => {
     }))
   }
 
+  // Validate form
   const validateForm = () => {
     const newErrors = {}
 
+    // Check required fields
     if (!formData.date) newErrors.date = "Date is required"
     if (!formData.opponent.trim()) newErrors.opponent = "Opponent is required"
     if (!formData.score.trim()) newErrors.score = "Score is required"
     if (!formData.venue.trim()) newErrors.venue = "Venue is required"
 
+    // Set errors and return validation result
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    // Validate form
     if (!validateForm()) {
       toast.error("Please fix the errors in the form")
       return
     }
 
+    // Check if user is logged in
     if (!user || !user.token) {
       toast.error("You must be logged in to create a match")
       return
@@ -183,6 +211,7 @@ const MatchForm = ({ match = null, onSuccess = () => {} }) => {
 
       console.log("Submitting match data:", matchData)
 
+      // Update or create match
       if (match) {
         dispatch(updateMatch({ id: match._id, matchData }))
       } else {

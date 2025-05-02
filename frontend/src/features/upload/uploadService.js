@@ -1,5 +1,7 @@
 import axios from "axios"
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000"
+
 // Upload image
 const uploadImage = async (imageData, token) => {
   try {
@@ -10,7 +12,7 @@ const uploadImage = async (imageData, token) => {
       },
     }
 
-    const response = await axios.post("https://cricket-team-backend.vercel.app/api/upload", imageData, config)
+    const response = await axios.post(`${API_URL}/api/upload`, imageData, config)
     return response.data
   } catch (error) {
     console.error("Upload error:", error.response?.data || error.message)
@@ -27,7 +29,11 @@ const deleteImage = async (publicId, token) => {
       },
     }
 
-    const response = await axios.delete(`https://cricket-team-backend.vercel.app/api/upload/${publicId}`, config)
+    // Fix: Remove the folder path from the publicId when making the API call
+    // The API expects just the ID, not the full path
+    const cleanPublicId = publicId.includes("/") ? publicId.split("/").pop() : publicId
+
+    const response = await axios.delete(`${API_URL}/api/upload/${cleanPublicId}`, config)
     return response.data
   } catch (error) {
     console.error("Delete error:", error.response?.data || error.message)

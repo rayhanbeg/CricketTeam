@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = "https://cricket-team-backend.vercel.app/api/players/"
+const API_URL = import.meta.env.VITE_API_URL + "/api/players/"
 
 // Get all players
 const getPlayers = async () => {

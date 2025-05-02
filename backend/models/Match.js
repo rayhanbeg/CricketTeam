@@ -18,7 +18,7 @@ const MatchSchema = new mongoose.Schema({
   result: {
     type: String,
     required: [true, "Please add a result"],
-    enum: ["Won", "Lost", "Draw"],
+    enum: ["Won", "Lost", "Draw", "Upcoming"],
   },
   score: {
     type: String,

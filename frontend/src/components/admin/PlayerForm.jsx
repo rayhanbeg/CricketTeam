@@ -8,9 +8,10 @@ import ImageUpload from "../ImageUpload"
 import { FaSpinner } from "react-icons/fa"
 
 const PlayerForm = ({ player = null, onSuccess = () => {} }) => {
+  // Initialize form data state
   const [formData, setFormData] = useState({
     name: "",
-    role: "Batsman",
+    role: "Batsman", // Default role
     jerseyNumber: "",
     age: "",
     experience: "",
@@ -18,16 +19,19 @@ const PlayerForm = ({ player = null, onSuccess = () => {} }) => {
     imageUrl: "",
   })
 
+  // State for image upload and form validation
   const [uploadedImage, setUploadedImage] = useState(null)
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  // Redux hooks
   const dispatch = useDispatch()
   const { isLoading, isSuccess, isError, message } = useSelector((state) => state.players)
 
   // If editing, populate form with player data
   useEffect(() => {
     if (player) {
+      // Set form data with player data
       setFormData({
         name: player.name || "",
         role: player.role || "Batsman",
@@ -43,19 +47,24 @@ const PlayerForm = ({ player = null, onSuccess = () => {} }) => {
   // Handle success and error states
   useEffect(() => {
     if (isSuccess && isSubmitting) {
+      // Show success message
       toast.success(player ? "Player updated successfully" : "Player added successfully")
       setIsSubmitting(false)
       onSuccess()
     }
 
     if (isError && isSubmitting) {
+      // Show error message
       toast.error(message || "Something went wrong")
       setIsSubmitting(false)
     }
   }, [isSuccess, isError, message, isSubmitting, player, onSuccess])
 
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target
+
+    // Update form data
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -70,9 +79,13 @@ const PlayerForm = ({ player = null, onSuccess = () => {} }) => {
     }
   }
 
+  // Handle image upload
   const handleImageUpload = (imageData) => {
     if (imageData) {
+      // Store uploaded image data
       setUploadedImage(imageData)
+
+      // Update form data with image URL
       setFormData((prev) => ({
         ...prev,
         imageUrl: imageData.url,
@@ -80,26 +93,35 @@ const PlayerForm = ({ player = null, onSuccess = () => {} }) => {
     }
   }
 
+  // Validate form
   const validateForm = () => {
     const newErrors = {}
 
+    // Check required fields
     if (!formData.name.trim()) newErrors.name = "Name is required"
+
+    // Validate jersey number
     if (!formData.jerseyNumber) newErrors.jerseyNumber = "Jersey number is required"
     else if (isNaN(formData.jerseyNumber)) newErrors.jerseyNumber = "Jersey number must be a number"
 
+    // Validate age
     if (!formData.age) newErrors.age = "Age is required"
     else if (isNaN(formData.age)) newErrors.age = "Age must be a number"
 
+    // Validate experience
     if (!formData.experience) newErrors.experience = "Experience is required"
     else if (isNaN(formData.experience)) newErrors.experience = "Experience must be a number"
 
+    // Set errors and return validation result
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    // Validate form
     if (!validateForm()) {
       toast.error("Please fix the errors in the form")
       return
@@ -115,6 +137,7 @@ const PlayerForm = ({ player = null, onSuccess = () => {} }) => {
       experience: Number.parseInt(formData.experience),
     }
 
+    // Update or create player
     if (player) {
       dispatch(updatePlayer({ id: player._id, playerData }))
     } else {

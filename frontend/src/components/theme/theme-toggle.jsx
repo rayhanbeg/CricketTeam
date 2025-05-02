@@ -1,4 +1,4 @@
-"use client"
+
 import { useTheme } from "./theme-provider"
 import { FaSun, FaMoon, FaDesktop } from "react-icons/fa"
 

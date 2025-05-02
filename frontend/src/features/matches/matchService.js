@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = "https://cricket-team-backend.vercel.app/api/matches/"
+const API_URL = import.meta.env.VITE_API_URL + "/api/matches/"
 
 // Get all matches
 const getMatches = async () => {
@@ -44,13 +44,16 @@ const createMatch = async (matchData, token) => {
     // Ensure the data is properly formatted
     const formattedData = {
       ...matchData,
-      playerPerformances: matchData.playerPerformances.map((perf) => ({
-        player: typeof perf.player === "object" ? perf.player._id : perf.player,
-        runs: Number(perf.runs) || 0,
-        wickets: Number(perf.wickets) || 0,
-        catches: Number(perf.catches) || 0,
-        runouts: Number(perf.runouts) || 0,
-      })),
+      // Check if playerPerformances exists before mapping
+      playerPerformances: matchData.playerPerformances
+        ? matchData.playerPerformances.map((perf) => ({
+            player: typeof perf.player === "object" ? perf.player._id : perf.player,
+            runs: Number(perf.runs) || 0,
+            wickets: Number(perf.wickets) || 0,
+            catches: Number(perf.catches) || 0,
+            runouts: Number(perf.runouts) || 0,
+          }))
+        : [], // Default to empty array if undefined
     }
 
     console.log("Sending formatted data:", formattedData)
@@ -82,13 +85,16 @@ const updateMatch = async (matchId, matchData, token) => {
     // Ensure the data is properly formatted
     const formattedData = {
       ...matchData,
-      playerPerformances: matchData.playerPerformances.map((perf) => ({
-        player: typeof perf.player === "object" ? perf.player._id : perf.player,
-        runs: Number(perf.runs) || 0,
-        wickets: Number(perf.wickets) || 0,
-        catches: Number(perf.catches) || 0,
-        runouts: Number(perf.runouts) || 0,
-      })),
+      // Check if playerPerformances exists before mapping
+      playerPerformances: matchData.playerPerformances
+        ? matchData.playerPerformances.map((perf) => ({
+            player: typeof perf.player === "object" ? perf.player._id : perf.player,
+            runs: Number(perf.runs) || 0,
+            wickets: Number(perf.wickets) || 0,
+            catches: Number(perf.catches) || 0,
+            runouts: Number(perf.runouts) || 0,
+          }))
+        : [], // Default to empty array if undefined
     }
 
     const response = await axios.put(API_URL + matchId, formattedData, config)

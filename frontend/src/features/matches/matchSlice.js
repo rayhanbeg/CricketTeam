@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import matchService from "./matchService"
+import  matchService  from "./matchService"
 
 const initialState = {
   matches: [],

@@ -12,10 +12,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/api": {
-        target: "https://cricket-team-backend.vercel.app",
-        changeOrigin: true,
-      },
+      '/api': 'https://cricket-team-backend.vercel.app',  // Proxy API requests
     },
   },
 })
