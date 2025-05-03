@@ -1,4 +1,4 @@
-"use client"
+
 
 import { useState, useEffect } from "react"
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom"
