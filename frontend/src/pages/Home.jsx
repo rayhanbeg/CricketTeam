@@ -1,4 +1,4 @@
-
+"use client"
 
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -17,7 +17,7 @@ import {
   FaRunning,
   FaChartBar,
 } from "react-icons/fa"
-import { MdOutlineSportsCricket } from "react-icons/md";
+import { MdOutlineSportsCricket } from "react-icons/md"
 
 import Spinner from "../components/layout/Spinner"
 
@@ -63,29 +63,30 @@ const Home = () => {
   }
 
   return (
-    <div className="overflow-auto bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800">
-      {/* Hero Section with Video Background */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-green-900/70 to-green-700/70 z-10"></div>
-        <div className="absolute inset-0 bg-[url('https://i.ibb.co.com/Ffj5WWP/alessandro-bogliari-o-Ds-Axe-R5g4-unsplash.jpg')] bg-cover bg-center"></div>
+    <div className="relative">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden rounded-xl">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/70 z-10"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1494&q=80')] bg-cover bg-center opacity-40"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black"></div>
         <div className="relative z-20 px-4 py-24 sm:px-6 lg:px-8 lg:py-32 max-w-7xl mx-auto">
           <div className="text-center">
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl drop-shadow-lg">
+            <h1 className="text-3xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 sm:text-4xl md:text-5xl">
               Kabi Nazrul College Cricket Team
             </h1>
-            <p className="mt-6 max-w-2xl mx-auto text-xl text-green-100">
+            <p className="mt-6 max-w-2xl mx-auto text-sm text-gray-300">
               Excellence in cricket, representing Kabi Nazrul Government College with pride and passion.
             </p>
             <div className="mt-10 flex justify-center gap-x-6">
               <Link
                 to="/matches"
-                className="rounded-md bg-green-600 px-5 py-3 text-base font-medium text-white shadow-lg hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 transition-all duration-300 transform hover:-translate-y-1"
+                className="rounded-md bg-gradient-to-r from-purple-600 to-purple-700 px-4 py-2 text-xs font-medium text-white hover:from-purple-700 hover:to-purple-800 focus:outline-none transition-all duration-300 shadow-lg shadow-purple-900/20"
               >
                 View Matches
               </Link>
               <Link
                 to="/players"
-                className="rounded-md bg-white/20 backdrop-blur-sm px-5 py-3 text-base font-medium text-white shadow-lg hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all duration-300 transform hover:-translate-y-1"
+                className="rounded-md bg-gradient-to-r from-zinc-800 to-zinc-900 px-4 py-2 text-xs font-medium text-white hover:from-zinc-700 hover:to-zinc-800 focus:outline-none transition-all duration-300 border border-zinc-700/50"
               >
                 Meet Our Team
               </Link>
@@ -97,14 +98,14 @@ const Home = () => {
       {/* Next Match Countdown */}
       {upcomingMatches.length > 0 && (
         <div className="relative -mt-10 z-30 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+          <div className="bg-zinc-900/90 backdrop-blur-sm rounded-lg shadow-xl overflow-hidden border border-purple-900/30 shadow-lg shadow-purple-900/10">
             <div className="px-4 py-5 sm:p-6">
               <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="text-center md:text-left">
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Next Match</h2>
-                  <div className="mt-2 flex items-center text-green-600 dark:text-green-400">
-                    <FaCalendarAlt className="mr-2" />
-                    <span>
+                  <h2 className="text-sm font-medium text-white">Next Match</h2>
+                  <div className="mt-2 flex items-center text-purple-400">
+                    <FaCalendarAlt className="mr-2 text-xs" />
+                    <span className="text-xs">
                       {new Date(upcomingMatches[0].date).toLocaleDateString(undefined, {
                         weekday: "long",
                         year: "numeric",
@@ -113,26 +114,24 @@ const Home = () => {
                       })}
                     </span>
                   </div>
-                  <h3 className="mt-3 text-2xl font-bold text-gray-900 dark:text-white">
-                    vs {upcomingMatches[0].opponent}
-                  </h3>
-                  <div className="mt-2 flex items-center text-gray-600 dark:text-gray-300">
-                    <FaMapMarkerAlt className="mr-2" />
-                    <span>{upcomingMatches[0].venue}</span>
+                  <h3 className="mt-3 text-base font-medium text-white">vs {upcomingMatches[0].opponent}</h3>
+                  <div className="mt-2 flex items-center text-gray-400">
+                    <FaMapMarkerAlt className="mr-2 text-xs" />
+                    <span className="text-xs">{upcomingMatches[0].venue}</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="text-center">
-                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900 mx-auto">
-                      <FaClock className="text-2xl text-green-600 dark:text-green-400" />
+                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-900/30 to-blue-900/30 mx-auto border border-purple-900/30">
+                      <FaClock className="text-purple-400" />
                     </div>
-                    <p className="mt-2 text-sm font-medium text-gray-600 dark:text-gray-300">Coming Soon</p>
+                    <p className="mt-2 text-xs text-gray-400">Coming Soon</p>
                   </div>
                   <Link
                     to={`/matches/${upcomingMatches[0]._id}`}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                    className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md text-white bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 transition-colors shadow-lg shadow-purple-900/20"
                   >
-                    Match Details <FaArrowRight className="ml-2" />
+                    Match Details <FaArrowRight className="ml-2 text-xs" />
                   </Link>
                 </div>
               </div>
@@ -142,82 +141,82 @@ const Home = () => {
       )}
 
       {/* Team Stats Overview */}
-      <div className="py-12 bg-white dark:bg-gray-900">
+      <div className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
               Team Performance
             </h2>
-            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
+            <p className="mt-3 max-w-2xl mx-auto text-xs text-gray-400">
               Our cricket team's achievements and statistics
             </p>
           </div>
 
           <div className="mt-10">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                <div className="relative px-5 py-6 bg-white dark:bg-gray-800 ring-1 ring-gray-900/5 dark:ring-gray-200/10 rounded-lg leading-none flex items-top justify-start space-x-6">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-purple-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative px-4 py-5 bg-zinc-900 rounded-lg border border-zinc-800 flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/50">
-                      <FaTrophy className="text-2xl text-green-600 dark:text-green-400" />
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-purple-900/30 to-purple-800/30 border border-purple-900/30">
+                      <FaTrophy className="text-purple-400" />
                     </div>
                   </div>
                   <div>
-                    <p className="text-slate-800 dark:text-white text-2xl font-bold">
+                    <p className="text-white text-lg font-medium">
                       {recentMatches.filter((match) => match.result === "Won").length}
                     </p>
-                    <p className="text-slate-600 dark:text-slate-300">Total Wins</p>
+                    <p className="text-gray-400 text-xs">Total Wins</p>
                   </div>
                 </div>
               </div>
 
               <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                <div className="relative px-5 py-6 bg-white dark:bg-gray-800 ring-1 ring-gray-900/5 dark:ring-gray-200/10 rounded-lg leading-none flex items-top justify-start space-x-6">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-600 to-cyan-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative px-4 py-5 bg-zinc-900 rounded-lg border border-zinc-800 flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/50">
-                      <MdOutlineSportsCricket className="text-2xl text-blue-600 dark:text-blue-400" />
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 border border-cyan-900/30">
+                      <MdOutlineSportsCricket className="text-cyan-400" />
                     </div>
                   </div>
                   <div>
-                    <p className="text-slate-800 dark:text-white text-2xl font-bold">{recentMatches.length}</p>
-                    <p className="text-slate-600 dark:text-slate-300">Matches Played</p>
+                    <p className="text-white text-lg font-medium">{recentMatches.length}</p>
+                    <p className="text-gray-400 text-xs">Matches Played</p>
                   </div>
                 </div>
               </div>
 
               <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                <div className="relative px-5 py-6 bg-white dark:bg-gray-800 ring-1 ring-gray-900/5 dark:ring-gray-200/10 rounded-lg leading-none flex items-top justify-start space-x-6">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-pink-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative px-4 py-5 bg-zinc-900 rounded-lg border border-zinc-800 flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/50">
-                      <FaRunning className="text-2xl text-purple-600 dark:text-purple-400" />
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-900/30 to-pink-800/30 border border-pink-900/30">
+                      <FaRunning className="text-pink-400" />
                     </div>
                   </div>
                   <div>
-                    <p className="text-slate-800 dark:text-white text-2xl font-bold">
+                    <p className="text-white text-lg font-medium">
                       {recentMatches.reduce((total, match) => {
                         const scoreStr = match.score || ""
                         const ourScoreMatch = scoreStr.match(/(\d+)\s*\/\s*\d+/)
                         return total + (ourScoreMatch ? Number.parseInt(ourScoreMatch[1], 10) : 0)
                       }, 0)}
                     </p>
-                    <p className="text-slate-600 dark:text-slate-300">Total Runs</p>
+                    <p className="text-gray-400 text-xs">Total Runs</p>
                   </div>
                 </div>
               </div>
 
               <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500 to-orange-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                <div className="relative px-5 py-6 bg-white dark:bg-gray-800 ring-1 ring-gray-900/5 dark:ring-gray-200/10 rounded-lg leading-none flex items-top justify-start space-x-6">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-600 to-amber-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative px-4 py-5 bg-zinc-900 rounded-lg border border-zinc-800 flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/50">
-                      <FaMedal className="text-2xl text-amber-600 dark:text-amber-400" />
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-amber-900/30 to-amber-800/30 border border-amber-900/30">
+                      <FaMedal className="text-amber-400" />
                     </div>
                   </div>
                   <div>
-                    <p className="text-slate-800 dark:text-white text-2xl font-bold">
+                    <p className="text-white text-lg font-medium">
                       {recentMatches.length > 0
                         ? Math.round(
                             (recentMatches.filter((match) => match.result === "Won").length / recentMatches.length) *
@@ -226,7 +225,7 @@ const Home = () => {
                         : 0}
                       %
                     </p>
-                    <p className="text-slate-600 dark:text-slate-300">Win Rate</p>
+                    <p className="text-gray-400 text-xs">Win Rate</p>
                   </div>
                 </div>
               </div>
@@ -236,27 +235,27 @@ const Home = () => {
       </div>
 
       {/* Matches Section with Tabs */}
-      <div className="py-12 bg-gray-50 dark:bg-gray-800">
+      <div className="py-12 bg-zinc-900/30 backdrop-blur-sm rounded-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
               Cricket Matches
             </h2>
-            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
+            <p className="mt-3 max-w-2xl mx-auto text-xs text-gray-400">
               Follow our team's journey through upcoming and recent matches
             </p>
           </div>
 
           <div className="mt-10">
-            <div className="border-b border-gray-200 dark:border-gray-700">
+            <div className="border-b border-zinc-800/50">
               <nav className="-mb-px flex justify-center space-x-8" aria-label="Tabs">
                 <button
                   onClick={() => setActiveTab("upcoming")}
                   className={`${
                     activeTab === "upcoming"
-                      ? "border-green-500 text-green-600 dark:text-green-400"
-                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
-                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm sm:text-base transition-colors duration-200`}
+                      ? "border-cyan-500 text-cyan-400"
+                      : "border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-600"
+                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-xs transition-colors duration-200`}
                 >
                   Upcoming Matches
                 </button>
@@ -264,9 +263,9 @@ const Home = () => {
                   onClick={() => setActiveTab("recent")}
                   className={`${
                     activeTab === "recent"
-                      ? "border-green-500 text-green-600 dark:text-green-400"
-                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
-                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm sm:text-base transition-colors duration-200`}
+                      ? "border-cyan-500 text-cyan-400"
+                      : "border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-600"
+                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-xs transition-colors duration-200`}
                 >
                   Recent Results
                 </button>
@@ -280,65 +279,61 @@ const Home = () => {
                     upcomingMatches.map((match) => (
                       <div
                         key={match._id}
-                        className="bg-white dark:bg-gray-700 overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                        className="bg-zinc-900/80 backdrop-blur-sm overflow-hidden rounded-lg border border-blue-900/30 hover:border-blue-700/50 transition-all duration-300 shadow-lg shadow-blue-900/5 group"
                       >
-                        <div className="bg-gradient-to-r from-green-600 to-green-500 px-4 py-3 text-white">
+                        <div className="bg-gradient-to-r from-blue-900/50 to-blue-800/30 px-4 py-3 text-white">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center">
-                              <FaCalendarAlt className="mr-2" />
-                              <span className="font-medium">{new Date(match.date).toLocaleDateString()}</span>
+                              <FaCalendarAlt className="mr-2 text-xs" />
+                              <span className="font-medium text-xs">{new Date(match.date).toLocaleDateString()}</span>
                             </div>
-                            <span className="px-2 py-1 bg-white/20 rounded-full text-xs font-medium">
-                              {match.format}
-                            </span>
+                            <span className="px-2 py-1 bg-zinc-800/70 rounded-full text-xs">{match.format}</span>
                           </div>
                         </div>
-                        <div className="p-6">
+                        <div className="p-4">
                           <div className="flex items-center justify-between mb-4">
                             <div className="text-center w-5/12">
-                              <div className="w-16 h-16 mx-auto bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center">
-                                <span className="text-xl font-bold text-gray-700 dark:text-gray-200">KNC</span>
+                              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-full flex items-center justify-center border border-zinc-700/50 group-hover:border-blue-700/50 transition-all duration-300">
+                                <span className="text-sm font-medium text-white">KNC</span>
                               </div>
-                              <p className="mt-2 text-sm font-medium text-gray-900 dark:text-white">Our Team</p>
+                              <p className="mt-2 text-xs text-gray-300">Our Team</p>
                             </div>
                             <div className="text-center">
-                              <div className="w-10 h-10 mx-auto bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center">
-                                <span className="text-lg font-bold text-gray-900 dark:text-white">VS</span>
+                              <div className="w-8 h-8 mx-auto bg-gradient-to-br from-blue-900/30 to-blue-800/20 rounded-full flex items-center justify-center border border-blue-900/30">
+                                <span className="text-xs font-medium text-blue-400">VS</span>
                               </div>
                             </div>
                             <div className="text-center w-5/12">
-                              <div className="w-16 h-16 mx-auto bg-gray-200 dark:bg-gray-600 rounded-full flex items-center justify-center">
-                                <span className="text-xl font-bold text-gray-700 dark:text-gray-200">
+                              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-full flex items-center justify-center border border-zinc-700/50 group-hover:border-blue-700/50 transition-all duration-300">
+                                <span className="text-sm font-medium text-white">
                                   {match.opponent.substring(0, 3).toUpperCase()}
                                 </span>
                               </div>
-                              <p className="mt-2 text-sm font-medium text-gray-900 dark:text-white">{match.opponent}</p>
+                              <p className="mt-2 text-xs text-gray-300">{match.opponent}</p>
                             </div>
                           </div>
-                          <div className="mt-6">
-                            <div className="flex items-center text-gray-600 dark:text-gray-300 mb-2">
-                              <FaMapMarkerAlt className="mr-2 text-green-500 dark:text-green-400" />
-                              <span>{match.venue}</span>
+                          <div className="mt-4">
+                            <div className="flex items-center text-gray-400 mb-2">
+                              <FaMapMarkerAlt className="mr-2 text-xs text-blue-400" />
+                              <span className="text-xs">{match.venue}</span>
                             </div>
                           </div>
-                          <div className="mt-6 text-center">
+                          <div className="mt-4 text-center">
                             <Link
                               to={`/matches/${match._id}`}
-                              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
+                              className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-colors shadow-lg shadow-blue-900/20"
                             >
-                              Match Details <FaArrowRight className="ml-2" />
+                              Match Details <FaArrowRight className="ml-2 text-xs" />
                             </Link>
                           </div>
                         </div>
                       </div>
                     ))
                   ) : (
-                    <div className="col-span-3 text-center py-12 bg-white dark:bg-gray-700 rounded-lg shadow">
-                      <FaCalendarAlt className="mx-auto h-12 w-12 text-gray-400" />
-                      <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">No upcoming matches</h3>
-                      <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                        Check back later for upcoming match schedules.
-                      </p>
+                    <div className="col-span-3 text-center py-12 bg-zinc-900/80 backdrop-blur-sm rounded-lg border border-zinc-800">
+                      <FaCalendarAlt className="mx-auto h-8 w-8 text-gray-500" />
+                      <h3 className="mt-2 text-xs font-medium text-white">No upcoming matches</h3>
+                      <p className="mt-1 text-xs text-gray-400">Check back later for upcoming match schedules.</p>
                     </div>
                   )}
                 </div>
@@ -350,68 +345,66 @@ const Home = () => {
                     recentMatches.map((match) => (
                       <div
                         key={match._id}
-                        className="bg-white dark:bg-gray-700 overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                        className="bg-zinc-900/80 backdrop-blur-sm overflow-hidden rounded-lg border border-cyan-900/30 hover:border-cyan-700/50 transition-all duration-300 shadow-lg shadow-cyan-900/5 group"
                       >
                         <div
                           className={`px-4 py-3 text-white ${
                             match.result === "Won"
-                              ? "bg-gradient-to-r from-green-600 to-green-500"
+                              ? "bg-gradient-to-r from-emerald-900/50 to-emerald-800/30"
                               : match.result === "Lost"
-                                ? "bg-gradient-to-r from-red-600 to-red-500"
-                                : "bg-gradient-to-r from-yellow-600 to-yellow-500"
+                                ? "bg-gradient-to-r from-red-900/50 to-red-800/30"
+                                : "bg-gradient-to-r from-amber-900/50 to-amber-800/30"
                           }`}
                         >
                           <div className="flex items-center justify-between">
                             <div className="flex items-center">
-                              <FaCalendarAlt className="mr-2" />
-                              <span className="font-medium">{new Date(match.date).toLocaleDateString()}</span>
+                              <FaCalendarAlt className="mr-2 text-xs" />
+                              <span className="font-medium text-xs">{new Date(match.date).toLocaleDateString()}</span>
                             </div>
-                            <span className="font-bold">{match.result}</span>
+                            <span className="font-medium text-xs">{match.result}</span>
                           </div>
                         </div>
-                        <div className="p-6">
+                        <div className="p-4">
                           <div className="flex items-center justify-between mb-4">
                             <div className="text-center w-5/12">
-                              <p className="text-lg font-semibold text-gray-900 dark:text-white">Our Team</p>
+                              <p className="text-xs font-medium text-white">Our Team</p>
                             </div>
                             <div className="text-center">
-                              <p className="text-lg font-bold text-gray-900 dark:text-white">VS</p>
+                              <p className="text-xs font-medium text-white">VS</p>
                             </div>
                             <div className="text-center w-5/12">
-                              <p className="text-lg font-semibold text-gray-900 dark:text-white">{match.opponent}</p>
+                              <p className="text-xs font-medium text-white">{match.opponent}</p>
+                            </div>
+                          </div>
+                          <div className="mt-3 text-center">
+                            <p className="text-sm font-medium text-white">{match.score}</p>
+                          </div>
+                          <div className="mt-4">
+                            <div className="flex items-center text-gray-400 mb-2">
+                              <FaMapMarkerAlt className="mr-2 text-xs text-cyan-400" />
+                              <span className="text-xs">{match.venue}</span>
+                            </div>
+                            <div className="flex items-center text-gray-400">
+                              <FaChartBar className="mr-2 text-xs text-cyan-400" />
+                              <span className="text-xs">{match.format}</span>
                             </div>
                           </div>
                           <div className="mt-4 text-center">
-                            <p className="text-xl font-bold text-gray-900 dark:text-white">{match.score}</p>
-                          </div>
-                          <div className="mt-6">
-                            <div className="flex items-center text-gray-600 dark:text-gray-300 mb-2">
-                              <FaMapMarkerAlt className="mr-2 text-green-500 dark:text-green-400" />
-                              <span>{match.venue}</span>
-                            </div>
-                            <div className="flex items-center text-gray-600 dark:text-gray-300">
-                              <FaChartBar className="mr-2 text-green-500 dark:text-green-400" />
-                              <span>{match.format}</span>
-                            </div>
-                          </div>
-                          <div className="mt-6 text-center">
                             <Link
                               to={`/matches/${match._id}`}
-                              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
+                              className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md text-white bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 transition-colors shadow-lg shadow-cyan-900/20"
                             >
-                              Match Details <FaArrowRight className="ml-2" />
+                              Match Details <FaArrowRight className="ml-2 text-xs" />
                             </Link>
                           </div>
                         </div>
                       </div>
                     ))
                   ) : (
-                    <div className="col-span-3 text-center py-12 bg-white dark:bg-gray-700 rounded-lg shadow">
-                      <FaChartLine className="mx-auto h-12 w-12 text-gray-400" />
-                      <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">No recent matches</h3>
-                      <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                        Check back after our upcoming matches for results.
-                      </p>
+                    <div className="col-span-3 text-center py-12 bg-zinc-900/80 backdrop-blur-sm rounded-lg border border-zinc-800">
+                      <FaChartLine className="mx-auto h-8 w-8 text-gray-500" />
+                      <h3 className="mt-2 text-xs font-medium text-white">No recent matches</h3>
+                      <p className="mt-1 text-xs text-gray-400">Check back after our upcoming matches for results.</p>
                     </div>
                   )}
                 </div>
@@ -421,9 +414,9 @@ const Home = () => {
             <div className="mt-10 text-center">
               <Link
                 to="/matches"
-                className="inline-flex items-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 shadow-md transition-all duration-200"
+                className="inline-flex items-center px-4 py-2 text-xs font-medium rounded-md text-white bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 transition-colors shadow-lg shadow-cyan-900/20"
               >
-                View All Matches <FaArrowRight className="ml-2" />
+                View All Matches <FaArrowRight className="ml-2 text-xs" />
               </Link>
             </div>
           </div>
@@ -431,59 +424,56 @@ const Home = () => {
       </div>
 
       {/* Featured Players Section */}
-      <div className="py-12 bg-white dark:bg-gray-900">
+      <div className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
               Featured Players
             </h2>
-            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
+            <p className="mt-3 max-w-2xl mx-auto text-xs text-gray-400">
               Meet the stars who make our team shine on the cricket field
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {topPlayers.length > 0 ? (
               topPlayers.map((player) => (
                 <Link to={`/players/${player._id}`} key={player._id} className="group relative">
-                  <div className="relative w-full h-80 rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-0 group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
+                  <div className="relative w-full rounded-lg overflow-hidden bg-zinc-900 border border-zinc-800 group-hover:border-pink-700/50 transition-all duration-300">
                     <img
                       src={player.imageUrl || `/placeholder.svg?height=320&width=240`}
                       alt={player.name}
                       className="w-full h-48 object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-0 right-0 m-2">
-                      <div className="bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                      <div className="bg-gradient-to-r from-pink-600 to-purple-600 text-white text-xs px-2 py-1 rounded-full shadow-lg shadow-pink-900/20">
                         #{player.jerseyNumber}
                       </div>
                     </div>
                     <div className="p-4">
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                      <h3 className="text-sm font-medium text-white group-hover:text-pink-400 transition-colors">
                         {player.name}
                       </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">{player.role}</p>
+                      <p className="text-xs text-gray-400">{player.role}</p>
                       <div className="mt-2 flex items-center">
-                        <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                        <div className="flex-1 h-1 bg-zinc-800 rounded-full">
                           <div
-                            className="h-2 bg-green-600 rounded-full"
+                            className="h-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full"
                             style={{ width: `${(player.stats?.rating || 0) * 10}%` }}
                           ></div>
                         </div>
-                        <span className="ml-2 text-xs font-medium text-gray-600 dark:text-gray-300">
-                          {player.stats?.rating || 0}/10
-                        </span>
+                        <span className="ml-2 text-xs text-gray-400">{player.stats?.rating || 0}/10</span>
                       </div>
                     </div>
                   </div>
                 </Link>
               ))
             ) : (
-              <div className="col-span-4 text-center py-12 bg-white dark:bg-gray-800 rounded-lg shadow">
-                <FaUsers className="mx-auto h-12 w-12 text-gray-400" />
-                <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">No players available</h3>
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                  Check back later to meet our team members.
-                </p>
+              <div className="col-span-4 text-center py-12 bg-zinc-900/80 backdrop-blur-sm rounded-lg border border-zinc-800">
+                <FaUsers className="mx-auto h-8 w-8 text-gray-500" />
+                <h3 className="mt-2 text-xs font-medium text-white">No players available</h3>
+                <p className="mt-1 text-xs text-gray-400">Check back later to meet our team members.</p>
               </div>
             )}
           </div>
@@ -491,38 +481,36 @@ const Home = () => {
           <div className="mt-10 text-center">
             <Link
               to="/players"
-              className="inline-flex items-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 shadow-md transition-all duration-200"
+              className="inline-flex items-center px-4 py-2 text-xs font-medium rounded-md text-white bg-gradient-to-r from-pink-600 to-purple-700 hover:from-pink-700 hover:to-purple-800 transition-colors shadow-lg shadow-purple-900/20"
             >
-              View All Players <FaArrowRight className="ml-2" />
+              View All Players <FaArrowRight className="ml-2 text-xs" />
             </Link>
           </div>
         </div>
       </div>
 
       {/* Call to Action */}
-      <div className="bg-green-700 dark:bg-green-800">
+      <div className="bg-gradient-to-r from-zinc-900/50 to-black/50 backdrop-blur-sm border-t border-zinc-800/50 rounded-xl">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
-          <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-xl font-medium tracking-tight text-white">
             <span className="block">Ready to join our journey?</span>
-            <span className="block text-green-200">Support our cricket team today.</span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 text-sm mt-1">
+              Support our cricket team today.
+            </span>
           </h2>
-          <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-            <div className="inline-flex rounded-md shadow">
-              <Link
-                to="/matches"
-                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-green-700 bg-white hover:bg-green-50 transition-colors duration-200"
-              >
-                Upcoming Matches
-              </Link>
-            </div>
-            <div className="ml-3 inline-flex rounded-md shadow">
-              <Link
-                to="/stats"
-                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-500 transition-colors duration-200"
-              >
-                Team Statistics
-              </Link>
-            </div>
+          <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0 gap-4">
+            <Link
+              to="/matches"
+              className="inline-flex items-center px-4 py-2 text-xs font-medium rounded-md bg-gradient-to-r from-zinc-800 to-zinc-900 text-white hover:from-zinc-700 hover:to-zinc-800 transition-colors border border-zinc-700/50"
+            >
+              Upcoming Matches
+            </Link>
+            <Link
+              to="/stats"
+              className="inline-flex items-center px-4 py-2 text-xs font-medium rounded-md bg-gradient-to-r from-purple-600 to-cyan-700 text-white hover:from-purple-700 hover:to-cyan-800 transition-colors shadow-lg shadow-purple-900/20"
+            >
+              Team Statistics
+            </Link>
           </div>
         </div>
       </div>

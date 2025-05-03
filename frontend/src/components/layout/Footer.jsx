@@ -1,77 +1,80 @@
-import { Link } from "react-router-dom"
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaCode } from "react-icons/fa"
+import { Link } from "react-router-dom";
+import {
+  FiGithub,
+  FiTwitter,
+  FiInstagram,
+  FiFacebook,
+  FiYoutube,
+} from "react-icons/fi";
 
 function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-card text-card-foreground border-t">
-      <div className="container mx-auto py-8 px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Kabi Nazrul Govt College</h3>
-            <p className="text-muted-foreground">English Department Cricket Team</p>
-            <p className="text-muted-foreground mt-2">Promoting cricket excellence and sportsmanship.</p>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/players" className="text-muted-foreground hover:text-primary transition-colors">
-                  Players
-                </Link>
-              </li>
-              <li>
-                <Link to="/stats" className="text-muted-foreground hover:text-primary transition-colors">
-                  Stats
-                </Link>
-              </li>
-              <li>
-                <Link to="/login" className="text-muted-foreground hover:text-primary transition-colors">
-                  Login
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
-            <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <FaFacebook size={20} />
-                <span className="sr-only">Facebook</span>
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <FaTwitter size={20} />
-                <span className="sr-only">Twitter</span>
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <FaInstagram size={20} />
-                <span className="sr-only">Instagram</span>
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <FaYoutube size={20} />
-                <span className="sr-only">YouTube</span>
-              </a>
+    <footer className="bg-gradient-to-tr from-gray-900 to-gray-800 text-gray-300 py-8 shadow-inner rounded-t-2xl">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+        {/* Left: Logo + Description */}
+        <div className="text-center md:text-left space-y-3">
+          <Link
+            to="/"
+            className="flex items-center justify-center md:justify-start space-x-2"
+          >
+            <div className="w-9 h-9 rounded-full bg-primary-500 flex items-center justify-center shadow-md">
+              <span className="text-white font-bold text-sm">CT</span>
             </div>
-          </div>
+            <span className="text-lg font-semibold bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent">
+              Cricket Team
+            </span>
+          </Link>
+          <p className="text-sm text-gray-400">Chasing boundaries together.</p>
         </div>
 
-        <div className="border-t border-border mt-8 pt-6 text-center text-muted-foreground">
-          <p>&copy; {currentYear} Kabi Nazrul Govt College English Department Cricket Team. All rights reserved.</p>
-          <p className="mt-2 flex items-center justify-center text-sm">
-            <FaCode className="mr-1" /> Developed by <span className="font-semibold ml-1">Rayhan</span>
-          </p>
+        {/* Right: Links + Socials */}
+        <div className="flex flex-col items-center md:items-end space-y-4">
+          <div className="flex space-x-4 text-sm">
+            <Link to="/" className="hover:text-white transition">Home</Link>
+            <Link to="/players" className="hover:text-white transition">Players</Link>
+            <Link to="/matches" className="hover:text-white transition">Matches</Link>
+            <Link to="/stats" className="hover:text-white transition">Stats</Link>
+          </div>
+
+          <div className="flex space-x-3 text-xl text-gray-400">
+            <a href="#"><FiTwitter className="hover:text-primary-400 transition" /></a>
+            <a href="#"><FiInstagram className="hover:text-pink-400 transition" /></a>
+            <a href="#"><FiFacebook className="hover:text-blue-500 transition" /></a>
+            <a href="#"><FiYoutube className="hover:text-red-500 transition" /></a>
+            <a href="#"><FiGithub className="hover:text-white transition" /></a>
+          </div>
         </div>
       </div>
+
+      {/* Bottom: Dev Credit */}
+      <div className="mt-6 border-t border-gray-700 pt-4 text-center text-xs text-gray-500">
+        <p>&copy; {currentYear} Cricket Team. All rights reserved.</p>
+        <p className="mt-1">
+          Dev by{" "}
+          <a
+            href="https://www.facebook.com/rayhan4030"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-400 hover:underline"
+          >
+            Rayhan
+          </a>
+        </p>
+        <p className="mt-1">
+          <a
+            href="https://www.facebook.com/rayhan4030"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-400 hover:underline"
+          >
+            Facebook
+          </a>
+        </p>
+      </div>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

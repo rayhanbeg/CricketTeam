@@ -1,4 +1,4 @@
-
+"use client"
 
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -121,25 +121,23 @@ const MatchesTab = () => {
     <div>
       <div className="sm:flex sm:items-center sm:justify-between">
         <div className="sm:flex-auto">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Matches</h2>
-          <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-            A list of all the matches played by the cricket team.
-          </p>
+          <h2 className="text-base font-medium text-cyan-400">Matches Management</h2>
+          <p className="mt-2 text-xs text-gray-400">Schedule, record, and manage all cricket matches.</p>
         </div>
         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none flex gap-3">
           <button
             type="button"
             onClick={openUpcomingModal}
-            className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto transition-colors duration-150"
+            className="inline-flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:from-blue-700 hover:to-blue-800 focus:outline-none transition-colors shadow-lg shadow-blue-900/20"
           >
-            <FaCalendarPlus className="mr-2" /> Add Upcoming Match
+            <FaCalendarPlus className="mr-2 text-xs" /> Add Upcoming Match
           </button>
           <button
             type="button"
             onClick={openAddModal}
-            className="inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto transition-colors duration-150"
+            className="inline-flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-cyan-600 to-cyan-700 px-3 py-1.5 text-xs font-medium text-white hover:from-cyan-700 hover:to-cyan-800 focus:outline-none transition-colors shadow-lg shadow-cyan-900/20"
           >
-            <FaPlus className="mr-2" /> Add Completed Match
+            <FaPlus className="mr-2 text-xs" /> Add Completed Match
           </button>
         </div>
       </div>
@@ -151,19 +149,19 @@ const MatchesTab = () => {
             placeholder="Search by opponent or venue..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm transition-colors duration-150"
+            className="block w-full pl-8 pr-3 py-1.5 text-xs border border-zinc-700 rounded-md bg-zinc-800/50 text-white focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 backdrop-blur-sm"
           />
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <FaSearch className="h-4 w-4 text-gray-400" />
+            <FaSearch className="h-3 w-3 text-gray-500" />
           </div>
         </div>
 
-        <div className="flex items-center space-x-2 bg-gray-50 dark:bg-gray-700 p-2 rounded-lg">
-          <FaFilter className="text-gray-500 dark:text-gray-400" />
+        <div className="flex items-center space-x-2 bg-zinc-800/50 p-2 rounded-md border border-zinc-700/50 backdrop-blur-sm">
+          <FaFilter className="text-gray-500 text-xs" />
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="bg-transparent border-none focus:ring-0 text-gray-700 dark:text-gray-300 text-sm"
+            className="bg-transparent border-none focus:ring-0 text-gray-300 text-xs"
           >
             <option value="all">All Matches</option>
             <option value="upcoming">Upcoming Matches</option>
@@ -176,14 +174,14 @@ const MatchesTab = () => {
 
       {/* Add Completed Match Modal */}
       {isAddModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white">Add Completed Match</h3>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-zinc-900 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-cyan-900/30 shadow-lg shadow-cyan-900/20">
+            <div className="p-4">
+              <div className="flex justify-between items-center mb-4 border-b border-zinc-800 pb-3">
+                <h3 className="text-sm font-medium text-cyan-400">Add Completed Match</h3>
                 <button
                   onClick={closeModals}
-                  className="text-gray-400 hover:text-gray-500 focus:outline-none transition-colors duration-150"
+                  className="text-gray-400 hover:text-gray-300 focus:outline-none transition-colors"
                 >
                   &times;
                 </button>
@@ -196,14 +194,14 @@ const MatchesTab = () => {
 
       {/* Edit Completed Match Modal */}
       {isEditModalOpen && selectedMatch && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white">Edit Completed Match</h3>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-zinc-900 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-cyan-900/30 shadow-lg shadow-cyan-900/20">
+            <div className="p-4">
+              <div className="flex justify-between items-center mb-4 border-b border-zinc-800 pb-3">
+                <h3 className="text-sm font-medium text-cyan-400">Edit Completed Match</h3>
                 <button
                   onClick={closeModals}
-                  className="text-gray-400 hover:text-gray-500 focus:outline-none transition-colors duration-150"
+                  className="text-gray-400 hover:text-gray-300 focus:outline-none transition-colors"
                 >
                   &times;
                 </button>
@@ -216,14 +214,14 @@ const MatchesTab = () => {
 
       {/* Add Upcoming Match Modal */}
       {isUpcomingModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white">Add Upcoming Match</h3>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-zinc-900 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-blue-900/30 shadow-lg shadow-blue-900/20">
+            <div className="p-4">
+              <div className="flex justify-between items-center mb-4 border-b border-zinc-800 pb-3">
+                <h3 className="text-sm font-medium text-blue-400">Add Upcoming Match</h3>
                 <button
                   onClick={closeModals}
-                  className="text-gray-400 hover:text-gray-500 focus:outline-none transition-colors duration-150"
+                  className="text-gray-400 hover:text-gray-300 focus:outline-none transition-colors"
                 >
                   &times;
                 </button>
@@ -236,14 +234,14 @@ const MatchesTab = () => {
 
       {/* Edit Upcoming Match Modal */}
       {isEditUpcomingModalOpen && selectedMatch && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white">Edit Upcoming Match</h3>
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-zinc-900 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-blue-900/30 shadow-lg shadow-blue-900/20">
+            <div className="p-4">
+              <div className="flex justify-between items-center mb-4 border-b border-zinc-800 pb-3">
+                <h3 className="text-sm font-medium text-blue-400">Edit Upcoming Match</h3>
                 <button
                   onClick={closeModals}
-                  className="text-gray-400 hover:text-gray-500 focus:outline-none transition-colors duration-150"
+                  className="text-gray-400 hover:text-gray-300 focus:outline-none transition-colors"
                 >
                   &times;
                 </button>
@@ -257,94 +255,75 @@ const MatchesTab = () => {
       <div className="mt-8 flex flex-col">
         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
-                <thead className="bg-gray-50 dark:bg-gray-800">
+            <div className="overflow-hidden shadow-lg shadow-cyan-900/10 border border-cyan-900/30 rounded-lg">
+              <table className="min-w-full divide-y divide-zinc-800/70">
+                <thead className="bg-gradient-to-r from-cyan-900/30 to-zinc-900">
                   <tr>
-                    <th
-                      scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white sm:pl-6"
-                    >
+                    <th scope="col" className="py-3 pl-4 pr-3 text-left text-xs font-medium text-gray-400 sm:pl-6">
                       Date
                     </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white"
-                    >
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-400">
                       Opponent
                     </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white"
-                    >
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-400">
                       Venue
                     </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white"
-                    >
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-400">
                       Format
                     </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white"
-                    >
+                    <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-400">
                       Status
                     </th>
-                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                    <th scope="col" className="relative py-3 pl-3 pr-4 sm:pr-6">
                       <span className="sr-only">Actions</span>
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900">
+                <tbody className="divide-y divide-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm">
                   {filteredMatches.length > 0 ? (
                     filteredMatches.map((match) => {
                       const isUpcoming = new Date(match.date) > new Date()
                       return (
-                        <tr key={match._id} className={isUpcoming ? "bg-blue-50 dark:bg-blue-900/20" : ""}>
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:text-white sm:pl-6">
+                        <tr key={match._id} className={isUpcoming ? "bg-blue-900/10" : ""}>
+                          <td className="whitespace-nowrap py-3 pl-4 pr-3 text-xs font-medium text-white sm:pl-6">
                             {new Date(match.date).toLocaleDateString()}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
-                            {match.opponent}
+                          <td className="whitespace-nowrap px-3 py-3 text-xs text-gray-300">{match.opponent}</td>
+                          <td className="whitespace-nowrap px-3 py-3 text-xs text-gray-300">{match.venue}</td>
+                          <td className="whitespace-nowrap px-3 py-3 text-xs text-gray-300">
+                            <span className="px-2 py-0.5 bg-zinc-800/70 rounded-full">{match.format}</span>
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
-                            {match.venue}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
-                            {match.format}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm">
+                          <td className="whitespace-nowrap px-3 py-3 text-xs">
                             {isUpcoming ? (
-                              <span className="inline-flex rounded-full px-2 text-xs font-semibold leading-5 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                              <span className="inline-flex rounded-full px-2 text-xs font-medium bg-blue-900/30 text-blue-400 border border-blue-900/30">
                                 Upcoming
                               </span>
                             ) : (
                               <span
-                                className={`inline-flex rounded-full px-2 text-xs font-semibold leading-5 ${
+                                className={`inline-flex rounded-full px-2 text-xs font-medium ${
                                   match.result === "Won"
-                                    ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                                    ? "bg-emerald-900/30 text-emerald-400 border border-emerald-900/30"
                                     : match.result === "Lost"
-                                      ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-                                      : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                                      ? "bg-red-900/30 text-red-400 border border-red-900/30"
+                                      : "bg-amber-900/30 text-amber-400 border border-amber-900/30"
                                 }`}
                               >
                                 {match.result}
                               </span>
                             )}
                           </td>
-                          <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                          <td className="relative whitespace-nowrap py-3 pl-3 pr-4 text-right text-xs font-medium sm:pr-6">
                             <button
                               onClick={() => openEditModal(match)}
-                              className="text-green-600 hover:text-green-900 dark:hover:text-green-400 mr-4 transition-colors duration-150"
+                              className="text-cyan-400 hover:text-cyan-300 mr-3 transition-colors"
                             >
-                              <FaEdit className="inline mr-1" /> Edit
+                              <FaEdit className="inline mr-1 text-xs" /> Edit
                             </button>
                             <button
                               onClick={() => handleDeleteMatch(match._id)}
-                              className="text-red-600 hover:text-red-900 dark:hover:text-red-400 transition-colors duration-150"
+                              className="text-red-400 hover:text-red-300 transition-colors"
                             >
-                              <FaTrash className="inline mr-1" /> Delete
+                              <FaTrash className="inline mr-1 text-xs" /> Delete
                             </button>
                           </td>
                         </tr>
@@ -352,7 +331,7 @@ const MatchesTab = () => {
                     })
                   ) : (
                     <tr>
-                      <td colSpan="6" className="px-3 py-4 text-sm text-center text-gray-500 dark:text-gray-400">
+                      <td colSpan="6" className="px-3 py-3 text-xs text-center text-gray-400">
                         No matches found
                       </td>
                     </tr>

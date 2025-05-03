@@ -1,4 +1,4 @@
-
+"use client"
 
 import { useState, useEffect } from "react"
 import { useNavigate, Link, useLocation } from "react-router-dom"
@@ -6,8 +6,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 import { login, reset } from "../features/auth/authSlice"
 import Spinner from "../components/layout/Spinner"
-import { motion } from "framer-motion"
-import { FaEnvelope, FaLock } from "react-icons/fa6"
+import { FaEnvelope, FaLock } from "react-icons/fa"
 import { PiSignIn } from "react-icons/pi"
 import { BiCricketBall } from "react-icons/bi"
 
@@ -78,64 +77,26 @@ const Login = () => {
     return <Spinner />
   }
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 24,
-      },
-    },
-  }
-
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#020817] pt-16">
-      <motion.div
-        className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-xl"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div variants={itemVariants}>
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
+      <div className="max-w-md w-full space-y-8 bg-zinc-900 p-6 rounded-lg border border-zinc-800">
+        <div>
           <div className="flex justify-center">
-            <motion.div
-              className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.8 }}
-            >
-              <BiCricketBall className="text-4xl text-green-600 dark:text-green-400" />
-            </motion.div>
+            <div className="w-16 h-16 bg-emerald-900/30 rounded-full flex items-center justify-center">
+              <BiCricketBall className="text-2xl text-emerald-500" />
+            </div>
           </div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
-            Sign in to your account
-          </h2>
+          <h2 className="mt-6 text-center text-xl font-medium text-white">Sign in to your account</h2>
           {location.state?.from && (
-            <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-              You need to sign in to access that page
-            </p>
+            <p className="mt-2 text-center text-xs text-gray-400">You need to sign in to access that page</p>
           )}
-        </motion.div>
+        </div>
 
-        <motion.form className="mt-8 space-y-6" onSubmit={onSubmit} variants={itemVariants}>
+        <form className="mt-8 space-y-6" onSubmit={onSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FaEnvelope className="h-5 w-5 text-gray-400" />
+                <FaEnvelope className="h-4 w-4 text-gray-500" />
               </div>
               <input
                 id="email"
@@ -145,13 +106,13 @@ const Login = () => {
                 required
                 value={email}
                 onChange={onChange}
-                className="appearance-none rounded-t-md relative block w-full px-3 py-3 pl-10 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-t-md relative block w-full px-3 py-2 pl-10 border border-zinc-700 placeholder-gray-500 text-white bg-zinc-800 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 text-xs"
                 placeholder="Email address"
               />
             </div>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FaLock className="h-5 w-5 text-gray-400" />
+                <FaLock className="h-4 w-4 text-gray-500" />
               </div>
               <input
                 id="password"
@@ -161,17 +122,17 @@ const Login = () => {
                 required
                 value={password}
                 onChange={onChange}
-                className="appearance-none rounded-b-md relative block w-full px-3 py-3 pl-10 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-b-md relative block w-full px-3 py-2 pl-10 border border-zinc-700 placeholder-gray-500 text-white bg-zinc-800 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 text-xs"
                 placeholder="Password"
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-gray-400 hover:text-gray-500 focus:outline-none"
+                  className="text-gray-500 hover:text-gray-400 focus:outline-none"
                 >
                   {showPassword ? (
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -180,7 +141,7 @@ const Login = () => {
                       />
                     </svg>
                   ) : (
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -201,31 +162,27 @@ const Login = () => {
           </div>
 
           <div>
-            <motion.button
+            <button
               type="submit"
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-xs font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                <PiSignIn className="h-5 w-5 text-green-500 group-hover:text-green-400" />
+                <PiSignIn className="h-4 w-4 text-emerald-500 group-hover:text-emerald-400" />
               </span>
               Sign in
-            </motion.button>
+            </button>
           </div>
-        </motion.form>
+        </form>
 
-        <motion.div variants={itemVariants} className="text-center">
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-center">
+          <p className="mt-2 text-xs text-gray-400">
             Not a member?{" "}
-            <motion.span whileHover={{ scale: 1.05 }} className="inline-block">
-              <Link to="/register" className="font-medium text-green-600 hover:text-green-500">
-                Register now
-              </Link>
-            </motion.span>
+            <Link to="/register" className="font-medium text-emerald-500 hover:text-emerald-400">
+              Register now
+            </Link>
           </p>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   )
 }
